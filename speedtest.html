@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Internet Speed Test</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #070b12;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 900px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .header {
+      margin-bottom: 25px;
+    }
+
+    .header h1 {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .header p {
+      color: #8490a3;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    /* Gauge */
+
+    .gauge-container {
+      width: 330px;
+      height: 330px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .gauge {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background:
+        conic-gradient(
+          from 225deg,
+          #18e0ff 0deg,
+          #18e0ff var(--progress),
+          #202936 var(--progress),
+          #202936 270deg,
+          transparent 270deg
+        );
+      position: relative;
+      transform: rotate(0deg);
+      box-shadow:
+        0 0 40px rgba(24,224,255,.08),
+        inset 0 0 30px rgba(0,0,0,.4);
+    }
+
+    .gauge::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      background: #070b12;
+    }
+
+    .gauge::after {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      border-radius: 50%;
+      border: 1px solid #1c2634;
+    }
+
+    .gauge-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mode {
+      color: #8995a8;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .speed {
+      font-size: 62px;
+      font-weight: 800;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .unit {
+      color: #7e8a9d;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    /* Button */
+
+    .go-button {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      border: 3px solid #19dfff;
+      background: #0b121c;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: -55px;
+      position: relative;
+      z-index: 5;
+      box-shadow:
+        0 0 25px rgba(24,224,255,.15),
+        inset 0 0 25px rgba(24,224,255,.04);
+      transition: .2s;
+    }
+
+    .go-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(24,224,255,.3);
+    }
+
+    .go-button:active {
+      transform: scale(.97);
+    }
+
+    .go-button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Results */
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 35px;
+    }
+
+    .card {
+      background: #0d131d;
+      border: 1px solid #1b2532;
+      border-radius: 15px;
+      padding: 18px 12px;
+    }
+
+    .card-title {
+      color: #7e8a9d;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .card-value {
+      font-size: 25px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-unit {
+      color: #788497;
+      font-size: 12px;
+      margin-right: 3px;
+    }
+
+    /* Info */
+
+    .info {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-box {
+      background: #0b1119;
+      border: 1px solid #18222f;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: right;
+    }
+
+    .info-title {
+      color: #687589;
+      font-size: 11px;
+      margin-bottom: 5px;
+    }
+
+    .info-value {
+      font-size: 13px;
+      color: #d9e0e9;
+      word-break: break-word;
+    }
+
+    .status {
+      margin-top: 18px;
+      color: #738096;
+      font-size: 13px;
+      min-height: 20px;
+    }
+
+    .error {
+      color: #ff6978;
+    }
+
+    .success {
+      color: #34e6a0;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: #465263;
+      font-size: 11px;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+
+      .app {
+        padding: 18px;
+      }
+
+      .header h1 {
+        font-size: 25px;
+      }
+
+      .gauge-container {
+        width: 280px;
+        height: 280px;
+      }
+
+      .speed {
+        font-size: 52px;
+      }
+
+      .go-button {
+        width: 92px;
+        height: 92px;
+        font-size: 22px;
+        margin-top: -48px;
+      }
+
+      .results {
+        gap: 8px;
+      }
+
+      .card {
+        padding: 14px 5px;
+      }
+
+      .card-value {
+        font-size: 20px;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+    <h1>اختبار سرعة الإنترنت</h1>
+    <p>قياس سرعة الاتصال بالإنترنت</p>
+  </div>
+
+  <div class="gauge-container">
+
+    <div class="gauge" id="gauge">
+
+      <div class="gauge-content">
+
+        <div class="mode" id="mode">
+          جاهز للاختبار
+        </div>
+
+        <div class="speed" id="speed">
+          0
+        </div>
+
+        <div class="unit">
+          Mbps
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <button class="go-button" id="goButton">
+    GO
+  </button>
+
+  <div class="results">
+
+    <div class="card">
+
+      <div class="card-title">
+        Download
+      </div>
+
+      <div class="card-value">
+        <span id="download">0</span>
+        <span class="card-unit">Mbps</span>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="card-title">
+        Upload
+      </div>
+
+      <div class="card-value">
+        <span id="upload">0</span>
+        <span class="card-unit">Mbps</span>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="card-title">
+        Ping
+      </div>
+
+      <div class="card-value">
+        <span id="ping">0</span>
+        <span class="card-unit">ms</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="info">
+
+    <div class="info-box">
+
+      <div class="info-title">
+        الاتصال
+      </div>
+
+      <div class="info-value" id="connection">
+        جاري التعرف...
+      </div>
+
+    </div>
+
+    <div class="info-box">
+
+      <div class="info-title">
+        المتصفح
+      </div>
+
+      <div class="info-value" id="browser">
+        جاري التعرف...
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="status" id="status">
+    اضغط GO لبدء الاختبار
+  </div>
+
+  <div class="footer">
+    Powered by Cloudflare Speed Test
+  </div>
+
+</div>
+
+
+<script type="module">
+
+  import SpeedTest from
+    "https://cdn.jsdelivr.net/npm/@cloudflare/speedtest@1.14.0/+esm";
+
+
+  const goButton = document.getElementById("goButton");
+
+  const speedElement = document.getElementById("speed");
+
+  const downloadElement = document.getElementById("download");
+
+  const uploadElement = document.getElementById("upload");
+
+  const pingElement = document.getElementById("ping");
+
+  const modeElement = document.getElementById("mode");
+
+  const statusElement = document.getElementById("status");
+
+  const gauge = document.getElementById("gauge");
+
+  const connectionElement =
+    document.getElementById("connection");
+
+  const browserElement =
+    document.getElementById("browser");
+
+
+  let test = null;
+
+
+  /* معلومات الاتصال */
+
+  function connectionInfo() {
+
+    const c =
+      navigator.connection ||
+      navigator.mozConnection ||
+      navigator.webkitConnection;
+
+    if (!c) {
+      connectionElement.textContent =
+        "غير متاح";
+      return;
+    }
+
+    let text = "";
+
+    if (c.effectiveType)
+      text += c.effectiveType.toUpperCase();
+
+    if (c.downlink)
+      text += " • " + c.downlink + " Mbps";
+
+    connectionElement.textContent =
+      text || "غير متاح";
+  }
+
+
+  /* معلومات المتصفح */
+
+  function browserInfo() {
+
+    const ua = navigator.userAgent;
+
+    let browser = "Browser";
+
+    if (ua.includes("Chrome"))
+      browser = "Chrome";
+
+    else if (ua.includes("Firefox"))
+      browser = "Firefox";
+
+    else if (ua.includes("Safari"))
+      browser = "Safari";
+
+    else if (ua.includes("Edge"))
+      browser = "Edge";
+
+    browserElement.textContent =
+      browser;
+  }
+
+
+  connectionInfo();
+
+  browserInfo();
+
+
+  /* تحديث العداد */
+
+  function setSpeed(value) {
+
+    if (!isFinite(value))
+      return;
+
+    value = Math.max(0, value);
+
+    speedElement.textContent =
+      value.toFixed(1);
+
+    /*
+      تحريك مؤشر الدائرة
+    */
+
+    const percent =
+      Math.min(value / 1000, 1);
+
+    const degrees =
+      percent * 270;
+
+    gauge.style.setProperty(
+      "--progress",
+      degrees + "deg"
+    );
+  }
+
+
+  /* بدء الاختبار */
+
+  goButton.addEventListener(
+    "click",
+    () => {
+
+      if (test)
+        return;
+
+
+      goButton.disabled = true;
+
+      downloadElement.textContent = "0";
+
+      uploadElement.textContent = "0";
+
+      pingElement.textContent = "0";
+
+      setSpeed(0);
+
+      modeElement.textContent =
+        "جاري الاتصال...";
+
+      statusElement.className =
+        "status";
+
+      statusElement.textContent =
+        "جاري قياس سرعة الإنترنت";
+
+
+      try {
+
+        test = new SpeedTest({
+
+          autoStart: false,
+
+          measureDownloadLoadedLatency: true,
+
+          measureUploadLoadedLatency: true
+
+        });
+
+
+        /*
+          تحديث النتائج أثناء الاختبار
+        */
+
+        test.onResultsChange = results => {
+
+          if (!results)
+            return;
+
+
+          const dl =
+            results.getDownloadBandwidth
+              ? results.getDownloadBandwidth()
+              : 0;
+
+
+          const ul =
+            results.getUploadBandwidth
+              ? results.getUploadBandwidth()
+              : 0;
+
+
+          const latency =
+            results.getUnloadedLatency
+              ? results.getUnloadedLatency()
+              : 0;
+
+
+          /*
+            Cloudflare يرجع Bandwidth
+            بالـ bits/sec
+          */
+
+          if (dl) {
+
+            const mbps =
+              dl / 1000000;
+
+            downloadElement.textContent =
+              mbps.toFixed(1);
+
+            if (modeElement.textContent
+                !== "جاري رفع البيانات...") {
+
+              modeElement.textContent =
+                "جاري قياس Download";
+
+              setSpeed(mbps);
+            }
+          }
+
+
+          if (ul) {
+
+            const mbps =
+              ul / 1000000;
+
+            uploadElement.textContent =
+              mbps.toFixed(1);
+
+            modeElement.textContent =
+              "جاري قياس Upload";
+
+            setSpeed(mbps);
+          }
+
+
+          if (latency) {
+
+            pingElement.textContent =
+              Math.round(latency);
+
+          }
+
+        };
+
+
+        /*
+          عند انتهاء الاختبار
+        */
+
+        test.onFinish = results => {
+
+          if (results) {
+
+            try {
+
+              const dl =
+                results.getDownloadBandwidth();
+
+              const ul =
+                results.getUploadBandwidth();
+
+              const latency =
+                results.getUnloadedLatency();
+
+
+              if (dl) {
+
+                downloadElement.textContent =
+                  (dl / 1000000).toFixed(1);
+
+              }
+
+
+              if (ul) {
+
+                uploadElement.textContent =
+                  (ul / 1000000).toFixed(1);
+
+              }
+
+
+              if (latency) {
+
+                pingElement.textContent =
+                  Math.round(latency);
+
+              }
+
+            } catch (e) {}
+
+          }
+
+
+          modeElement.textContent =
+            "اكتمل الاختبار";
+
+          statusElement.className =
+            "status success";
+
+          statusElement.textContent =
+            "تم الانتهاء من اختبار سرعة الإنترنت";
+
+
+          goButton.disabled = false;
+
+          test = null;
+
+        };
+
+
+        /*
+          في حالة حدوث خطأ
+        */
+
+        test.onError = error => {
+
+          console.error(error);
+
+          modeElement.textContent =
+            "حدث خطأ";
+
+          statusElement.className =
+            "status error";
+
+          statusElement.textContent =
+            "تعذر إكمال الاختبار. تأكد من اتصال الإنترنت ثم حاول مرة أخرى.";
+
+
+          goButton.disabled = false;
+
+          test = null;
+
+        };
+
+
+        /*
+          تشغيل الاختبار
+        */
+
+        test.play();
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        modeElement.textContent =
+          "حدث خطأ";
+
+        statusElement.className =
+          "status error";
+
+        statusElement.textContent =
+          "تعذر تشغيل اختبار السرعة.";
+
+        goButton.disabled = false;
+
+        test = null;
+
+      }
+
+    }
+
+  );
+
+</script>
+
+</body>
+</html>
