@@ -1,10 +1,25 @@
 [
   {
-    "config": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@82.38.31.66:8080",
-    "countryCode": "nl"
+    "config": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpvWklvQTY5UTh5aGNRVjhrYTNQYTNB@193.29.139.235:8080#Netherlands 🇳🇱",
+    "countryCode": "NL"
+  },
+  
+  {
+    "config": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTprMWRCT21PQjRvcWk3VW1wMzdhMWJR@82.38.31.211:8080#United Kingdom 🇬🇧," 
+    "countryCode": "GB"
+  },
+  
+  {
+    "config": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpQV3BqUG8zdHFoUE40eVJa@8.209.74.72:20001#Germany 🇩🇪",
+    "countryCode": "DE"
+  },
+  
+  {
+    "config": "ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M%3D@149.22.87.241:443#Japan",
+    "countryCode": "JP"
   },
   {
-    "config": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpQQVNTV09SRF8z@9.9.9.9:8388",
-    "countryCode": "us"
+    "config": "ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M=@156.146.38.170:443#United States 🇺🇸",
+    "countryCode": "US"
   }
 ]
