@@ -15,6 +15,15 @@
   },
   
   {
+    "config": "ss://YWVzLTEyOC1nY206NGVmZTFhZjI3MmU3MjkyMTM5Yjg4OWY2YTYzZWUwNzE@64.74.163.69:18766#Canada 🇨🇦 ",
+    "countryCode": "CA"
+  },
+  
+  {
+    "config": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpXU3lMNFhUd05zZHY@108.181.121.226:8388#Spain",
+    "countryCode": "ES"
+  },
+  {
     "config": "ss://YWVzLTEyOC1nY206c2hhZG93c29ja3M%3D@149.22.87.241:443#Japan",
     "countryCode": "JP"
   },
