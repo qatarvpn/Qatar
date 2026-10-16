@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080D1A">
+
+  <meta name="description" content="Read the privacy policy of E2ray VPN. Learn how the app handles location permissions, advertising, Firebase services, and your privacy.">
+
+  <title>Privacy Policy | E2ray VPN</title>
+
+  <style>
+    :root {
+      --bg: #080D1A;
+      --surface: #101A2C;
+      --surface-light: #14233A;
+      --primary: #36D6F5;
+      --secondary: #42E8A4;
+      --text: #F2F7FF;
+      --muted: #A5B4CC;
+      --border: rgba(91, 184, 226, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(
+          ellipse at top,
+          rgba(26, 102, 151, 0.16),
+          transparent 55%
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.75;
+      padding: 24px 16px 40px;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 35px 20px 30px;
+      margin-bottom: 24px;
+      background: linear-gradient(
+        145deg,
+        rgba(20, 35, 58, 0.95),
+        rgba(10, 20, 36, 0.8)
+      );
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 22px;
+      background: rgba(54, 214, 245, 0.10);
+      border: 1px solid rgba(54, 214, 245, 0.3);
+      color: var(--primary);
+      font-size: 34px;
+      font-weight: bold;
+      box-shadow: 0 0 30px rgba(54, 214, 245, 0.08);
+    }
+
+    h1 {
+      font-size: clamp(27px, 5vw, 38px);
+      line-height: 1.3;
+      margin-bottom: 10px;
+      letter-spacing: -0.8px;
+    }
+
+    h1 span {
+      color: var(--primary);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .updated {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 5px 13px;
+      border-radius: 30px;
+      background: rgba(66, 232, 164, 0.09);
+      color: var(--secondary);
+      font-size: 12px;
+      border: 1px solid rgba(66, 232, 164, 0.2);
+    }
+
+    .intro {
+      padding: 22px;
+      margin-bottom: 18px;
+      background: rgba(54, 214, 245, 0.055);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: #D9E7F8;
+    }
+
+    .section {
+      padding: 24px;
+      margin-bottom: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-size: 19px;
+      line-height: 1.5;
+      margin-bottom: 13px;
+    }
+
+    .number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 29px;
+      height: 29px;
+      border-radius: 9px;
+      background: rgba(54, 214, 245, 0.10);
+      font-size: 13px;
+    }
+
+    p {
+      color: #CBD6E7;
+      font-size: 14px;
+      margin-bottom: 11px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      padding-left: 22px;
+      color: #CBD6E7;
+      font-size: 14px;
+    }
+
+    li {
+      padding-left: 4px;
+      margin-bottom: 8px;
+    }
+
+    li::marker {
+      color: var(--secondary);
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 12px 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    footer .brand {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 14px 12px 25px;
+      }
+
+      header {
+        padding: 28px 16px;
+        border-radius: 19px;
+      }
+
+      .section {
+        padding: 19px 17px;
+      }
+
+      .intro {
+        padding: 18px;
+      }
+
+      h2 {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <div class="logo" aria-hidden="true">E</div>
+
+      <h1><span>E2ray VPN</span><br>Privacy Policy</h1>
+
+      <p class="subtitle">
+        Your privacy matters. Learn how our app handles information.
+      </p>
+
+      <div class="updated">
+        Last updated: October 16, 2026
+      </div>
+    </header>
+
+    <div class="intro">
+      <p>
+        Welcome to E2ray VPN. This Privacy Policy explains how information
+        may be handled when you use our mobile application.
+      </p>
+      <p>
+        E2ray VPN does not require an account or registration. We do not
+        operate our own system to collect personal information directly
+        from users. However, certain third-party services integrated into
+        the app may process technical information as described below.
+      </p>
+    </div>
+
+    <section class="section">
+      <h2><span class="number">01</span> Information We Collect</h2>
+
+      <p>
+        E2ray VPN does not ask you to provide your name, email address,
+        phone number, or other personal details to create an account.
+        No account registration or login is required.
+      </p>
+
+      <p>
+        We do not directly collect or maintain a personal user profile
+        through the app. However, third-party SDKs and services used by
+        the application may automatically process certain information,
+        depending on their configuration and your device settings.
+      </p>
+
+      <ul>
+        <li>Technical information about the device and app.</li>
+        <li>Advertising identifiers and advertising interaction data.</li>
+        <li>App diagnostics, crash reports, and performance information.</li>
+        <li>Information needed to deliver and maintain integrated services.</li>
+      </ul>
+
+      <p>
+        The exact information processed depends on the services enabled
+        in the version of the app you use.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">02</span> Location Permission</h2>
+
+      <p>
+        E2ray VPN may request access to your device's location to support
+        the interactive map feature.
+      </p>
+
+      <ul>
+        <li>Location access is intended to help display your position on the map.</li>
+        <li>Location permission is not required for account registration because the app has no account system.</li>
+        <li>You can manage or revoke location permission through your Android device settings.</li>
+      </ul>
+
+      <p>
+        We do not operate our own service to collect or store your location.
+        Nevertheless, map providers or related services may process location
+        information if the map feature connects to them. Please review the
+        applicable provider's privacy policy.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">03</span> VPN Connections and Traffic</h2>
+
+      <p>
+        E2ray VPN provides VPN connectivity using supported connection
+        protocols and available servers.
+      </p>
+
+      <p>
+        VPN connections necessarily involve communication between your
+        device and the selected VPN server. The operation of the VPN
+        service may therefore involve network information such as IP
+        addresses, connection status, and traffic routing data.
+      </p>
+
+      <p>
+        We do not claim that all VPN traffic or connection metadata is
+        automatically anonymous or that every server follows the same
+        logging practices. Actual data handling may depend on the VPN
+        server provider, server configuration, and connection protocol.
+      </p>
+
+      <p>
+        Do not assume that your internet service provider, destination
+        websites, or VPN server operators cannot observe any information
+        about your connection.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">04</span> Google AdMob Advertising</h2>
+
+      <p>
+        E2ray VPN uses Google AdMob to display advertisements. AdMob
+        and its partners may collect or process certain information
+        to serve ads, measure performance, prevent fraud, and provide
+        advertising-related services.
+      </p>
+
+      <p>This information may include, depending on configuration:</p>
+
+      <ul>
+        <li>Advertising identifiers.</li>
+        <li>Device and app information.</li>
+        <li>IP address and approximate location derived from it.</li>
+        <li>Ad impressions, interactions, and diagnostic information.</li>
+      </ul>
+
+      <p>
+        Advertising practices may vary depending on your region,
+        consent choices, device settings, and the ad configuration.
+      </p>
+
+      <p>
+        Learn more in
+        <a href="https://policies.google.com/privacy"
+           target="_blank" rel="noopener noreferrer">
+          Google's Privacy Policy
+        </a>
+        and the
+        <a href="https://support.google.com/admob/"
+           target="_blank" rel="noopener noreferrer">
+          Google AdMob Help Center
+        </a>.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">05</span> Firebase Services</h2>
+
+      <p>
+        E2ray VPN uses Google Firebase services to support application
+        functionality. Depending on the Firebase products enabled,
+        these services may process technical information such as
+        app interactions, device information, performance data,
+        or crash reports.
+      </p>
+
+      <p>
+        Firebase data processing depends on the specific services
+        integrated and their configuration. We do not use Firebase
+        as an account registration system for E2ray VPN.
+      </p>
+
+      <p>
+        For more information, please review
+        <a href="https://firebase.google.com/support/privacy"
+           target="_blank" rel="noopener noreferrer">
+          Firebase Privacy and Security
+        </a>
+        and
+        <a href="https://policies.google.com/privacy"
+           target="_blank" rel="noopener noreferrer">
+          Google's Privacy Policy
+        </a>.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">06</span> Data Sharing</h2>
+
+      <p>
+        We do not sell personal information collected directly by us.
+        We do not maintain a user account database for E2ray VPN.
+      </p>
+
+      <p>
+        Third-party service providers, including Google AdMob and
+        Firebase, may process information under their own policies
+        to provide the services integrated into the app.
+      </p>
+
+      <p>
+        Information may also be processed when required by applicable
+        law or when necessary to protect the security and integrity
+        of the service.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">07</span> Data Security and Retention</h2>
+
+      <p>
+        We aim to use appropriate measures to protect the application
+        and its services. However, no method of electronic transmission
+        or storage can be guaranteed to be completely secure.
+      </p>
+
+      <p>
+        E2ray VPN does not maintain a personal account database.
+        Any information processed by third-party providers is subject
+        to their applicable retention and deletion policies, as well
+        as the configuration of the services used.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">08</span> Children's Privacy</h2>
+
+      <p>
+        E2ray VPN is not intended to knowingly collect personal
+        information directly from children. The app does not require
+        users to create accounts or submit personal details.
+      </p>
+
+      <p>
+        Third-party advertising and analytics services may have their
+        own rules and protections for children. Their configuration
+        should comply with applicable laws and Google Play policies.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">09</span> Your Choices and Permissions</h2>
+
+      <p>You can control certain aspects of your experience by:</p>
+
+      <ul>
+        <li>Managing location permission in your Android settings.</li>
+        <li>Managing advertising personalization through Google's available settings.</li>
+        <li>Uninstalling the application to stop its future use on your device.</li>
+        <li>Reviewing the privacy policies of integrated third-party providers.</li>
+      </ul>
+
+      <p>
+        Uninstalling the app does not automatically delete information
+        that may already have been processed by third-party providers.
+        Such information is handled according to their policies.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">10</span> Changes to This Policy</h2>
+
+      <p>
+        We may update this Privacy Policy when the app's functionality,
+        integrated services, or applicable legal requirements change.
+        Updates will be published on this page with a revised
+        "Last updated" date.
+      </p>
+
+      <p>
+        We encourage users to review this page periodically.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2><span class="number">11</span> Contact Us</h2>
+
+      <p>
+        If you have questions about this Privacy Policy or the privacy
+        practices of E2ray VPN, please contact the app developer
+        using the contact information provided on the app's Google
+        Play Store listing.
+      </p>
+
+      <p>
+        <span class="highlight">
+          E2ray VPN — Privacy is important.
+        </span>
+      </p>
+    </section>
+
+    <footer>
+      <div class="brand">E2ray VPN</div>
+      <p>Protect your connection. Respect your privacy.</p>
+      <p>© 2026 E2ray VPN. All rights reserved.</p>
+    </footer>
+
+  </main>
+</body>
+</html>
