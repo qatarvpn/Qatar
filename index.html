@@ -1170,6 +1170,10 @@ html[lang="ar"] .lang-toggle button{ font-family:'Tajawal', sans-serif; }
     height:100%;
     object-fit:cover;
     background:#080808;
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
   }
   @media(max-width:600px){
     .hero-video-wrap{padding-top:18px;padding-bottom:8px}
@@ -1214,7 +1218,7 @@ html[lang="ar"] .lang-toggle button{ font-family:'Tajawal', sans-serif; }
   <div class="hero-video-wrap">
     <div class="phone-glow"></div>
     <div class="hero-video-shell" aria-label="Qatar VPN app screen recording">
-      <video class="hero-app-video" autoplay muted loop playsinline controls preload="metadata">
+      <video class="hero-app-video" autoplay muted loop playsinline preload="auto" controlslist="nodownload nofullscreen noremoteplayback" disablepictureinpicture disableremoteplayback tabindex="-1" aria-label="Qatar VPN app screen recording">
         <source src="qatar-vpn-demo.mp4" type="video/mp4">
         Your browser does not support embedded video.
       </video>
@@ -2041,5 +2045,21 @@ html[lang="ar"] .lang-toggle button{ font-family:'Tajawal', sans-serif; }
   })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "910d76fe4b0f45159b5f573fe2749ad2"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+  // Decorative autoplay video: no on-video controls, context menu, or interaction.
+  (function(){
+    const video = document.querySelector('.hero-app-video');
+    if (!video) return;
+    video.controls = false;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.addEventListener('contextmenu', event => event.preventDefault());
+    video.addEventListener('click', event => event.preventDefault());
+    const play = () => video.play().catch(() => {});
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', play, {once:true});
+    else play();
+  })();
+</script>
 </body>
 </html>
