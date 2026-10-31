@@ -7,7 +7,7 @@
   "play_store_url": "https://play.google.com/store/apps/details?id=com.free.fastvpnmania",
   "button_text": "INSTALL NOW",
 
-  "show_frequency": 3,
+  "show_frequency": 1,
   "cooldown_hours": 24,
   "show_only_when_disconnected": true,
 
