@@ -98,7 +98,7 @@
     <ul>
       <li>require you to create an account or provide your name, email address or phone number;</li>
       <li>upload, copy, store or have access to the audio files you select or the stems the App creates;</li>
-      <li>collect your precise or approximate location, contacts, photos, camera or microphone data;</li>
+      <li>collect your precise or approximate location, contacts, photos or camera data. The microphone is used only when you tap the record button, and the recording stays on your device (see section 4);</li>
       <li>sell your personal information to anyone.</li>
     </ul>
   </section>
@@ -120,7 +120,8 @@
       <thead><tr><th>Permission</th><th>Why it is needed</th></tr></thead>
       <tbody>
         <tr><td>Audio / media files<br><small>(READ_MEDIA_AUDIO, READ_EXTERNAL_STORAGE on older Android)</small></td><td>To let you browse and pick songs stored on your device for separation. Files are read only when you select them.</td></tr>
-        <tr><td>Internet</td><td>To download the separation model on first launch and to load ads through Google AdMob.</td></tr>
+        <tr><td>Microphone<br><small>(RECORD_AUDIO)</small></td><td>Only when you tap the record button in the mixer, to record your own voice over a song. The recording is stored temporarily on your device, is never uploaded, and is deleted when you close the song. It is included in an exported file only if you export a mix.</td></tr>
+        <tr><td>Internet</td><td>To load ads through Google AdMob and, only if the bundled model cannot be used, to download the separation model.</td></tr>
         <tr><td>Notifications</td><td>To show progress and completion while a song is being processed in the background.</td></tr>
         <tr><td>Foreground service (data sync)</td><td>To keep the separation running reliably if you switch to another app.</td></tr>
       </tbody>
@@ -129,8 +130,8 @@
   </section>
 
   <section>
-    <h2><span class="n">5</span>Internet use: model download</h2>
-    <p>On first launch the App downloads the AI separation model (a large file) from a public hosting service (Hugging Face). Like any web download, the hosting service may receive technical information such as your IP address and device/network details as part of the request. After the model is downloaded, separation works fully offline. No audio or personal content is sent in this request.</p>
+    <h2><span class="n">5</span>The separation model</h2>
+    <p>The AI separation model is delivered together with the App through Google Play, so separation works fully offline. In the rare case that the bundled model is missing, the App downloads it from a public hosting service (Hugging Face). Like any web download, the hosting service may receive technical information such as your IP address and device/network details as part of the request. No audio or personal content is sent in this request.</p>
   </section>
 
   <section>
@@ -174,7 +175,7 @@
 
   <section>
     <h2><span class="n">10</span>Security</h2>
-    <p>Because processing happens on your device and files are not uploaded, your audio is protected by your device's own security. We use secure HTTPS connections for the model download. No method of electronic storage or transmission is 100% secure, but we do our best to minimize risk.</p>
+    <p>Because processing happens on your device and files are not uploaded, your audio is protected by your device's own security. We use secure HTTPS connections for any download. No method of electronic storage or transmission is 100% secure, but we do our best to minimize risk.</p>
   </section>
 
   <section>
